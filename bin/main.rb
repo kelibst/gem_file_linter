@@ -4,9 +4,11 @@ require_relative '../lib/bot.rb'
 require_relative '../lib/help.rb'
 
 def start
+
+  linter = Bot.new
   # let's check if the Gemfile exist and has some contents in it
   if File.exist?('gem')
-    input_gem
+    linter.input_gem
   elsif !File.exist?('gem')
     puts "Sorry you do not have Gemfile in your working folder.
 
@@ -18,7 +20,7 @@ def start
 
     unless create_gem_input.downcase == 'n'
       file = File.open('gem', 'w')
-      input_gem
+      linter.input_gem
     end
     puts 'Exiting... Bye!'.green if create_gem_input.downcase == 'n'
   end
