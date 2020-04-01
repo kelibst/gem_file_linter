@@ -12,7 +12,7 @@ def start
 
             Would you want us to create it for you?
 
-            Y/N"
+            Y/N".yellow
 
     create_gem_input = gets.chomp
 
@@ -20,7 +20,7 @@ def start
       file = File.open('gem', 'w')
       input_gem
     end
-    puts 'Exiting... Bye' if create_gem_input.downcase == 'n'
+    puts 'Exiting... Bye!'.green if create_gem_input.downcase == 'n'
   end
 end
 
