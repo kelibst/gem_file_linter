@@ -1,3 +1,4 @@
+gem 'loveitmore'
 gem 'loveit'
 gem 'lovietil'
  source 'https://rubygems.org'

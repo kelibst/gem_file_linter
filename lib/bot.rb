@@ -23,7 +23,7 @@ class Bot
     end
 
     File.open(file, 'w') do |fd|
-      fd.write(new_contents)
+      res = fd.write(new_contents)
     end
   end
 
@@ -78,5 +78,6 @@ class Bot
 
     input = gets.chomp
     add_gem(input)
+    input
   end
 end

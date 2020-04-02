@@ -1,25 +1,27 @@
 require_relative '../lib/bot.rb'
+require 'colorize'
 require_relative '../spec/test_reader.rb'
 
 describe Bot do
-  let(:gem_file) { 'gem' }
+  let(:gem_file) { 'test.txt' }
   subject { Bot.new(gem_file) }
 
   describe '#display_gem_file' do
     @gem_file = 'test.txt'
-    it 'returns to return a string containing the files in the file to be read.' do
+    it 'returns to return a string containedin the file to be read.' do
       expect(subject.display_gem_file).to eq(test_filedata)
     end
+
+    it 'Should not return an integer' do
+        expect(subject.display_gem_file.is_a?(Integer)).to eq(false)
+      end
   end
 
-  # describe '#file_prepend' do
+  describe '#can_write_file?' do
+      it 'returns true if the file writable'  do
+      expect(subject.can_write_file?).to eq(true)
+      end
+      
+  end
 
-  # let(:new_str) {'Hello World'}
-
-  # it 'returns prepends the string at the beginning of the file.' do
-
-  #     expect(subject.file_prepend('test.txt', new_str)).to eq('Hello Worldtest'.length)
-  # end
-
-  # end
 end
