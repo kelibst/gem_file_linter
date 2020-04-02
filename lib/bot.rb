@@ -41,24 +41,28 @@ class Bot
     can_write
   end
 
+  def success
+    puts 'your file was successfully updated your gemfile with the gem name you entered'
+    puts display_gem_file.green
+  end
+
+  # rubocop :disable  Metrics/PerceivedComplexity
   def add_gem(input)
     if input.downcase == 'y'
-        
+
       if can_write_file?
         puts 'Awesome Enter your gem name.'
         input = gets.chomp
         puts "you did not enter anything.\n Exiting the game!" if input.empty?
-        if File.empty?(@gem_file) 
-            
-            file = File.open(@gem_file, 'w') 
-            file.write "gem '#{input}'\n source 'https://rubygems.org'"
-            file.close
-            puts display_gem_file.green
-          
-        elsif !File.empty?(@gem_file) 
+        if File.empty?(@gem_file)
+          file = File.open(@gem_file, 'w')
+          file.write "gem '#{input}'\n source 'https://rubygems.org'"
+          file.close
+          success
+
+        elsif !File.empty?(@gem_file)
           file_prepend(@gem_file, "gem '#{input}'\n")
-          puts 'your file was successfully updated your gemfile with the gem name you entered'
-          puts display_gem_file.green
+          success
         end
       end
     else
@@ -66,12 +70,13 @@ class Bot
       all_errors
     end
   end
+  # rubocop :enable  Metrics/PerceivedComplexity
 
   def input_gem
     puts "Do you want to add gems to your?\n
             enter Y/N".yellow
 
     input = gets.chomp
-      add_gem(input)
+    add_gem(input)
   end
 end
