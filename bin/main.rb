@@ -1,8 +1,7 @@
-#!/usr/bin/env ruby
+# !/usr/bin/env ruby
 require_relative '../lib/bot.rb'
 require_relative '../lib/help.rb'
 require 'colorize'
-
 
 def start
   gem_file = 'gem'
