@@ -25,7 +25,7 @@ make sure you have ruby installed and run
 ## Test codes
 
 if you do not have a Gemfile in your working directory, the project will request to create one for you. Then ask to fill it.
-if you do have a gem file, the program checks if it includes at least one gem and at least one source url.
+if you do have a gem file, The script checks if it includes at least one gem and at least one source url.
 
 
 
