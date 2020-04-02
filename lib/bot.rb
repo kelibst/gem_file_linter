@@ -23,7 +23,7 @@ class Bot
     end
 
     File.open(file, 'w') do |fd|
-      res = fd.write(new_contents)
+      fd.write(new_contents)
     end
   end
 

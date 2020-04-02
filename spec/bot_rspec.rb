@@ -13,15 +13,13 @@ describe Bot do
     end
 
     it 'Should not return an integer' do
-        expect(subject.display_gem_file.is_a?(Integer)).to eq(false)
-      end
+      expect(subject.display_gem_file.is_a?(Integer)).to eq(false)
+    end
   end
 
   describe '#can_write_file?' do
-      it 'returns true if the file writable'  do
+    it 'returns true if the file writable' do
       expect(subject.can_write_file?).to eq(true)
-      end
-      
+    end
   end
-
 end
