@@ -63,6 +63,7 @@ class Bot
         elsif !File.empty?(@gem_file)
           file_prepend(@gem_file, "gem '#{input}'\n")
           success
+          all_errors
         end
       end
     else
