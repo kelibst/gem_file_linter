@@ -9,7 +9,6 @@ class LinterBot
 
   def display_gem_file
     file = File.open(@gem_file, 'r')
-
     filedata = file.read
     file.close
     filedata
@@ -32,7 +31,7 @@ class LinterBot
     display_gem_file.include?('gem') ? '' : @errors.push('Your Gemfile should include at least one gem')
     display_gem_file.include?('https://rubygems.org') ? '' : @errors.push('You did not include ruby source url')
 
-    @errors.each { |x| puts x.red }
+    @errors
   end
 
   def can_write_file?
@@ -46,11 +45,11 @@ class LinterBot
     puts display_gem_file.green
   end
 
-  def not_empty
-    input = ''
-    until !input.empty?
+  def not_empty(input = '')
+    
+    while input.empty?
       input = gets.chomp
-      puts "Please enter a valid gem name.!" if input.empty?
+      puts 'Please enter a valid gem name.!' if input.empty?
     end
     input
   end
@@ -65,26 +64,23 @@ class LinterBot
     elsif !File.empty?(@gem_file)
       file_prepend(@gem_file, "gem '#{input}'\n")
       success
-      all_errors
+      all_errors.each { |x| puts x.red }
     end
   end
 
-  # rubocop :disable  Metrics/PerceivedComplexity
   def add_gem(input)
     if input.downcase == 'y'
 
       if can_write_file?
         puts 'Awesome Enter your gem name.'
-       
-        
+
         gem_add(not_empty)
       end
     else
       # writing  LinterBot to check if code meets the requirements.
-      all_errors
+      all_errors.each { |x| puts x.red }
     end
   end
-  # rubocop :enable  Metrics/PerceivedComplexity
 
   def input_gem
     puts "Do you want to add gems to your?\n

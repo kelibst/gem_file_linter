@@ -1,5 +1,5 @@
 def test_filedata
-  file = File.open('test.txt', 'r')
+  file = File.open('spec/test.txt', 'r')
 
   filedata = file.read
   file.close

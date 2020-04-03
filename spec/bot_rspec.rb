@@ -2,12 +2,12 @@ require_relative '../lib/bot.rb'
 require 'colorize'
 require_relative '../spec/test_reader.rb'
 
-describe Linter do
-  let(:gem_file) { 'test.txt' }
-  subject { Linter.new(gem_file) }
+describe LinterBot do
+  let(:gem_file) { 'spec/test.txt' }
+  subject { LinterBot.new(gem_file) }
 
   describe '#display_gem_file' do
-    @gem_file = 'test.txt'
+    @gem_file = 'spec/test.txt'
     it 'returns to return a string containedin the file to be read.' do
       expect(subject.display_gem_file).to eq(test_filedata)
     end
@@ -19,7 +19,13 @@ describe Linter do
 
   describe '#can_write_file?' do
     it 'returns true if the file writable' do
-      expect(subject.can_write_file?).to eq(true)
+      expect(subject.can_write_file?).to eq(File.writable?(gem_file))
+    end
+  end
+
+  describe '#all_errors' do
+    it 'returns false if input if empty' do
+      expect(subject.all_errors.empty?).to eq(false)
     end
   end
 end
