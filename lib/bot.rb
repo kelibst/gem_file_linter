@@ -46,13 +46,23 @@ class LinterBot
   end
 
   def not_empty(input = '')
-    
     while input.empty?
       input = gets.chomp
       puts 'Please enter a valid gem name.!' if input.empty?
     end
     input
   end
+
+  def input_gem
+    puts "Do you want to add gems to your?\n
+            enter Y/N".yellow
+
+    input = gets.chomp
+    add_gem(input)
+    input
+  end
+
+  private
 
   def gem_add(input)
     if File.empty?(@gem_file)
@@ -80,14 +90,5 @@ class LinterBot
       # writing  LinterBot to check if code meets the requirements.
       all_errors.each { |x| puts x.red }
     end
-  end
-
-  def input_gem
-    puts "Do you want to add gems to your?\n
-            enter Y/N".yellow
-
-    input = gets.chomp
-    add_gem(input)
-    input
   end
 end
