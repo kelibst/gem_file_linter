@@ -1,4 +1,4 @@
-class Bot
+class LinterBot
   attr_reader :gem_file
   attr_writer :gem_file
 
@@ -55,27 +55,32 @@ class Bot
     input
   end
 
+  def gem_add(input)
+    if File.empty?(@gem_file)
+      file = File.open(@gem_file, 'w')
+      file.write "gem '#{input}'\n source 'https://rubygems.org'"
+      file.close
+      success
+
+    elsif !File.empty?(@gem_file)
+      file_prepend(@gem_file, "gem '#{input}'\n")
+      success
+      all_errors
+    end
+  end
+
   # rubocop :disable  Metrics/PerceivedComplexity
   def add_gem(input)
     if input.downcase == 'y'
 
       if can_write_file?
         puts 'Awesome Enter your gem name.'
-        input = not_empty
-        if File.empty?(@gem_file)
-          file = File.open(@gem_file, 'w')
-          file.write "gem '#{input}'\n source 'https://rubygems.org'"
-          file.close
-          success
-
-        elsif !File.empty?(@gem_file)
-          file_prepend(@gem_file, "gem '#{input}'\n")
-          success
-          all_errors
-        end
+       
+        
+        gem_add(not_empty)
       end
     else
-      # writing linter bot to check if code meets the requirements.
+      # writing  LinterBot to check if code meets the requirements.
       all_errors
     end
   end

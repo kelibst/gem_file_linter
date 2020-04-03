@@ -5,7 +5,7 @@ require 'colorize'
 
 def start
   gem_file = 'gem'
-  linter = Bot.new(gem_file)
+  linter = LinterBot.new(gem_file)
   # let's check if the Gemfile exist and has some contents in it
   if File.exist?(gem_file)
     linter.input_gem

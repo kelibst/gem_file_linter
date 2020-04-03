@@ -2,9 +2,9 @@ require_relative '../lib/bot.rb'
 require 'colorize'
 require_relative '../spec/test_reader.rb'
 
-describe Bot do
+describe Linter do
   let(:gem_file) { 'test.txt' }
-  subject { Bot.new(gem_file) }
+  subject { Linter.new(gem_file) }
 
   describe '#display_gem_file' do
     @gem_file = 'test.txt'
