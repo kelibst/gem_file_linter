@@ -46,14 +46,22 @@ class Bot
     puts display_gem_file.green
   end
 
+  def not_empty
+    input = ''
+    until !input.empty?
+      input = gets.chomp
+      puts "Please enter a valid gem name.!" if input.empty?
+    end
+    input
+  end
+
   # rubocop :disable  Metrics/PerceivedComplexity
   def add_gem(input)
     if input.downcase == 'y'
 
       if can_write_file?
         puts 'Awesome Enter your gem name.'
-        input = gets.chomp
-        puts "you did not enter anything.\n Exiting the game!" if input.empty?
+        input = not_empty
         if File.empty?(@gem_file)
           file = File.open(@gem_file, 'w')
           file.write "gem '#{input}'\n source 'https://rubygems.org'"
